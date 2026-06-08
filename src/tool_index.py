@@ -65,6 +65,22 @@ ALWAYS_AVAILABLE = frozenset({
     "ask_user",
     # Write back to the active plan (tick steps done / revise) during execution.
     "update_plan",
+    # FRA Governance — Vine/SBT mathematical governance tools (always available
+    # so agents can verify Cauchy ledger, chamber ordering, baseline health).
+    "mcp__fra_governance__fra_governance_process",
+    "mcp__fra_governance__fra_governance_report",
+    "mcp__fra_governance__fra_cauchy_balance",
+    "mcp__fra_governance__fra_chamber_status",
+    "mcp__fra_governance__fra_baseline_health",
+    "mcp__fra_governance__fra_spawn_agent",
+    "mcp__fra_governance__fra_run_3agent_loop",
+    # FRA Agents — autonomous math reasoning, stuck resolution, content, voice, JT scans
+    "mcp__fra_governance__fra_math_agent",
+    "mcp__fra_governance__fra_explore_direction",
+    "mcp__fra_governance__fra_content_generate",
+    "mcp__fra_governance__fra_voice_render",
+    "mcp__fra_governance__fra_jt_scan",
+    "mcp__fra_governance__fra_jt_status",
 })
 
 # Tools that the Personal Assistant always has access to during scheduled
