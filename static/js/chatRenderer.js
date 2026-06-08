@@ -1838,7 +1838,7 @@ export function displayMetrics(messageElement, metrics) {
           compactMsg.className = 'msg msg-ai';
           const compactRole = document.createElement('div');
           compactRole.className = 'role';
-          compactRole.textContent = 'Odysseus';
+          compactRole.textContent = 'FRA';
           const compactBody = document.createElement('div');
           compactBody.className = 'body';
           compactBody.innerHTML = 'Compacting context <span class="compact-wave">▁▂▃▅▂▁</span>';

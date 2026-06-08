@@ -63,7 +63,7 @@ export const PROMPT_TEMPLATES = [
   },
   {
     id: 'odysseus',
-    name: 'Odysseus',
+    name: 'FRA',
     temperature: 1.0,
     isPreset: true,
     isCharacter: true,

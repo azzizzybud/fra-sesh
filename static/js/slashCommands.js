@@ -259,7 +259,7 @@ function slashReply(text) {
   div.className = 'msg msg-ai';
   const role = document.createElement('div');
   role.className = 'role';
-  role.textContent = 'Odysseus';
+  role.textContent = 'FRA';
   div.appendChild(role);
   const body = document.createElement('div');
   body.className = 'body';
@@ -328,7 +328,7 @@ function typewriterReply(text, options = {}) {
     div.className = 'msg msg-ai';
     const role = document.createElement('div');
     role.className = 'role';
-    role.textContent = 'Odysseus';
+    role.textContent = 'FRA';
     div.appendChild(role);
     const body = document.createElement('div');
     body.className = 'body';
@@ -368,7 +368,7 @@ function typewriterBlocksReply(blocks, options = {}) {
     div.className = 'msg msg-ai';
     const role = document.createElement('div');
     role.className = 'role';
-    role.textContent = 'Odysseus';
+    role.textContent = 'FRA';
     div.appendChild(role);
     const body = document.createElement('div');
     body.className = 'body';
@@ -559,7 +559,7 @@ async function connectDetectedSetupEndpoint(detected) {
   spinnerDiv.className = 'msg msg-ai';
   const spinnerRole = document.createElement('div');
   spinnerRole.className = 'role';
-  spinnerRole.textContent = 'Odysseus';
+  spinnerRole.textContent = 'FRA';
   spinnerDiv.appendChild(spinnerRole);
   const spinnerBody = document.createElement('div');
   spinnerBody.className = 'body';
@@ -5050,7 +5050,7 @@ function _eggRender(html) {
   div.className = 'msg msg-ai';
   const role = document.createElement('div');
   role.className = 'role';
-  role.textContent = 'Odysseus';
+  role.textContent = 'FRA';
   div.appendChild(role);
   const body = document.createElement('div');
   body.className = 'body';
