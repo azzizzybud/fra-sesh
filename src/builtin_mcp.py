@@ -66,12 +66,21 @@ def _find_npx() -> str:
 # image_gen / memory / rag / email still run as stdio MCP servers — each
 # carries hundreds of LOC of unique IMAP / HTTP / manager logic not worth
 # duplicating into the native path right now.
+_FRA_DIR = os.environ.get(
+    "FRA_DIR",
+    r"C:\Users\info\OneDrive\Desktop\Claude-workspace\feather-research-agent",
+)
+
 _BUILTIN_SERVERS = {
     "image_gen":           ("mcp_servers/image_gen_server.py",           "Built-in: Image Generation"),
     "memory":              ("mcp_servers/memory_server.py",              "Built-in: Memory"),
     "rag":                 ("mcp_servers/rag_server.py",                 "Built-in: RAG"),
     "email":               ("mcp_servers/email_server.py",               "Built-in: Email"),
     "fra_governance":      ("mcp_servers/fra_governance_server.py",      "Built-in: FRA Governance (Vine/SBT)"),
+    # FeatherCore tools from the FRA repo itself (feather_status, feather_intel,
+    # feather_tick, feather_verify, ...). Absolute path — os.path.join below
+    # passes it through unchanged. Self-bootstrapping, works from any cwd.
+    "feathercore":         (os.path.join(_FRA_DIR, "feather_mcp_server.py"), "Built-in: FeatherCore (FRA Tools)"),
 }
 
 # NPX-based built-in servers (run via npx, not Python)

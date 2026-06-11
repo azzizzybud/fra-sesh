@@ -23,6 +23,7 @@ import voiceRecorderModule from './js/voiceRecorder.js';
 import censorModule from './js/censor.js';
 import galleryModule from './js/gallery.js';
 import tasksModule from './js/tasks.js';
+import agentsModule from './js/agents.js';
 import calendarModule from './js/calendar.js';
 import notesModule from './js/notes.js';
 import adminModule from './js/admin.js';
@@ -879,18 +880,22 @@ function initializeEventListeners() {
   // Tasks tool button
   const toolTasksBtn = el('tool-tasks-btn');
   if (toolTasksBtn) {
-  // Agents buttons (sidebar + rail)
-  const agentsBtns = [el("rail-agents"), el("tool-agents-btn")].filter(Boolean);
-  agentsBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-    });
-  });
     toolTasksBtn.addEventListener('click', () => {
       if (tasksModule) {
         tasksModule.isTasksOpen() ? tasksModule.closeTasks() : tasksModule.openTasks();
       }
     });
   }
+
+  // FRA Agents buttons (sidebar + rail)
+  const agentsBtns = [el('rail-agents'), el('tool-agents-btn')].filter(Boolean);
+  agentsBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (agentsModule) {
+        agentsModule.isAgentsOpen() ? agentsModule.closeAgents() : agentsModule.openAgents();
+      }
+    });
+  });
 
   // Calendar tool button
   const toolCalendarBtn = el('tool-calendar-btn');

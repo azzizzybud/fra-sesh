@@ -171,6 +171,10 @@ if AUTH_ENABLED:
         "/api/health",
         "/api/version",
         "/login",
+        "/api/fra/status",
+        "/api/fra/dashboard",
+        "/api/fra/sandwich/test",
+        "/api/fra/parallel/status",
     }
     AUTH_EXEMPT_PREFIXES = ["/static"]
     # Dynamic paths whose own handler proves identity via a path-embedded
@@ -721,6 +725,15 @@ app.include_router(setup_contacts_routes())
 from companion import setup_companion_routes
 app.include_router(setup_companion_routes())
 
+# FRA Governance — Vine/SBT mathematical governance middleware + dashboard
+from fra_governance.fra_middleware import FRAGovernanceMiddleware
+app.add_middleware(FRAGovernanceMiddleware)
+from routes.fra_routes import router as fra_router
+app.include_router(fra_router)
+from routes.agents_routes import router as fra_agents_router
+app.include_router(fra_agents_router)
+logger.info("FRA governance middleware, routes, and agents dashboard active")
+
 # ========= ROUTES (kept in app.py) =========
 
 def _serve_html_with_nonce(request: Request, file_path: str) -> HTMLResponse:
@@ -1071,6 +1084,17 @@ async def _startup_event():
     # removes the feature.
     from src.cookbook_serve_lifecycle import cookbook_serve_lifecycle_loop
     _startup_tasks.append(asyncio.create_task(cookbook_serve_lifecycle_loop()))
+
+    # Auto-register FRA Sesh with governance on startup
+    try:
+        from fra_governance.startup import ensure_fra_registered
+        fra_reg = ensure_fra_registered()
+        if fra_reg.get("newly_registered"):
+            logger.info(f"FRA governance: registered new system {fra_reg['system_id']}")
+        else:
+            logger.info(f"FRA governance: system {fra_reg.get('system_id')} already active")
+    except Exception as e:
+        logger.warning(f"FRA governance startup registration: {e}")
 
     logger.info("Application startup complete")
 
