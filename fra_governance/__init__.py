@@ -44,6 +44,43 @@ from fra_governance.vine_spawner import (
 from fra_governance.sandwich_bridge import (
     register_fra_sesh, process_request, get_report, self_test as sandwich_self_test,
 )
+from fra_governance.startup import (
+    ensure_fra_registered, get_system_id as fra_system_id,
+)
+from fra_governance.fra_memory import (
+    write_research_memory, read_recent_memories,
+    save_research_state, save_session_summary,
+    assemble_session_context, read_brain_md, self_test as memory_self_test,
+)
+from fra_governance.parallel_engine import (
+    execute_parallel_tracks, build_standard_fra_tracks,
+    merge_findings, ParallelResult, TrackDefinition, self_test as parallel_self_test,
+)
+from fra_governance.universal_research import (
+    get_all_systems, get_system, get_active_systems,
+    get_classification_summary, route_research_query,
+    record_system_session, build_system_prompt,
+    build_universal_dashboard, get_research_priority,
+    get_theorems, get_route_labels, self_test as universal_self_test,
+)
+from fra_governance.fra_output import (
+    evaluate_with_panel, humanize_text, humanize_score,
+    research_to_content_brief, generate_video_asset_specs,
+    process_fra_output, self_test as output_self_test,
+)
+from fra_governance.fra_consolidation import (
+    list_components, find_fra_file, print_consolidation_report,
+    get_fra_path, self_test as consolidation_self_test,
+)
+from fra_governance.vine_activation import (
+    activate_vine_spawner, spawn_from_template,
+    spawn_research_team, get_active_vine_agents, self_test as vine_activation_self_test,
+)
+from fra_governance.fra_marketing import (
+    compute_stability_score, classify_lead, score_leads,
+    generate_agency_metrics, generate_business_intelligence_report,
+    generate_marketing_campaign_brief, self_test as marketing_self_test,
+)
 
 def run_all_self_tests():
     """Run all governance module self-tests. Returns dict of results."""
@@ -56,6 +93,13 @@ def run_all_self_tests():
         "repair_pipeline": repair_self_test,
         "vine_spawner": vine_self_test,
         "sandwich_bridge": sandwich_self_test,
+        "fra_memory": memory_self_test,
+        "parallel_engine": parallel_self_test,
+        "universal_research": universal_self_test,
+        "fra_output": output_self_test,
+        "fra_consolidation": consolidation_self_test,
+        "vine_activation": vine_activation_self_test,
+        "fra_marketing": marketing_self_test,
     }
     results = {}
     for name, test_fn in tests.items():

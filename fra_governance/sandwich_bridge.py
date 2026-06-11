@@ -327,7 +327,7 @@ def self_test() -> bool:
         for f in [db]:
             try: os.remove(f)
             except: pass
-        reg = register_odysseus("TestOdysseus", trust_level="amber", chamber_depth=0)
+        reg = register_fra_sesh("TestOdysseus", trust_level="amber", chamber_depth=0)
         assert reg["system_id"] is not None
         sid = reg["system_id"]
 

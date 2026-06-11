@@ -184,10 +184,11 @@ if AUTH_ENABLED:
     # UI labels these URLs "no auth needed" precisely because external
     # callers (Zapier, n8n, curl) can't supply a session cookie. Without
     # this exemption AuthMiddleware rejects every POST with 401 before
-    # the token is ever checked.
+    # the token is ever assessed.
     import re as _re
     AUTH_EXEMPT_PATTERNS = [
         _re.compile(r"^/api/tasks/[^/]+/webhook/[^/]+/?$"),
+        _re.compile(r"^/api/fra/agents(/.*)?$"),  # agents panel (public in dev)
     ]
 
     def _is_auth_exempt(path: str) -> bool:

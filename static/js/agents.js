@@ -17,6 +17,7 @@ let _fraDirExists = true;
 let _pollTimer = null;
 let _escHandler = null;
 let _expandedOutput = null; // agent_id whose output panel is open
+let _fetchError = false;    // true if last fetch failed
 
 // ---- API ----
 
@@ -28,9 +29,11 @@ async function _fetchAgents() {
     _agents = data.agents || [];
     _fraDir = data.fra_dir || '';
     _fraDirExists = data.fra_dir_exists !== false;
+    _fetchError = false;
   } catch (e) {
     console.error('Failed to fetch FRA agents:', e);
     _agents = [];
+    _fetchError = true;
   }
 }
 
@@ -123,6 +126,9 @@ function _renderList() {
 
   if (!_agents.length) {
     body.innerHTML = `<div style="opacity:0.6;padding:30px;text-align:center;">Loading agents…</div>`;
+    if (_fetchError) {
+      body.innerHTML += `<div style="padding:10px;margin-top:8px;border:1px solid var(--red,#b33);border-radius:8px;font-size:0.8rem;color:var(--red,#b33);text-align:center;">Connection to backend failed — <a href="/" style="color:inherit">start the server</a> or check the console for details</div>`;
+    }
     return;
   }
 
